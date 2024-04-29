@@ -8,15 +8,19 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Http\Response as HttpResponse;
+use App\Enums\ServerStatus;
+use ILLuminate\Validation\Rule;
+
 
 
 
 class RegisterController extends Controller
 {
     public function register(Request $request){
-          $validator = $request->validate([
+          $validator = Validator($request->all(),[
             'name' => 'required|max:255',
-            'email' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
             'password' => 'required|min:8' ,
             'phone' => 'required|numeric|min:11',
             'status'=> 'numeric',
@@ -28,11 +32,18 @@ class RegisterController extends Controller
 
         $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
 
-      if($validator){
-        User::create([
+      if($validator->fails()){
+
+
+          return response()->json([
+
+               'message' => $validator->getMessageBag()->first()
+               ] , HttpResponse::HTTP_BAD_REQUEST);
+        }
+       User::create([
             'name' => $request ->name,
             'email' => $request ->email,
-            'password' => Hash::make($request ->password),
+            'password' =>Hash::make($request ->password),
             'phone' => $request ->phone,
             'status'=>$request->status,
             'image'=>$imageName,
@@ -43,22 +54,14 @@ class RegisterController extends Controller
         // save image in storge folder
         Storage::disk('public')->put($imageName , file_get_contents($request->image));
 
-        return response()->json([
+         return response()->json([
 
             'message' =>'User has been registered' , 200
 
         ]);
        }
 
-     else{
-        
-        return response()->json([
-
-            'message' =>' UnRegistered'
-
-        ]);
-
-    }
+     
     }
 
-}
+

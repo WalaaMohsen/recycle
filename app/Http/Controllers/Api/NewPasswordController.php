@@ -19,17 +19,7 @@ class NewPasswordController extends Controller
 {
     public function forget_password(Request $request){
 
-        /*$token = Str::random(40);
-        DB::table('password_reset_tokens')->insert([
-                  'email' => $request->email,
-                  'token' => $token,
-                  'created_at' => Carbon::now(),
-        ]);
-        Mail::send('emails.forget',['token' =>$token],function($message) use ($request){
-            $message->to($request->email);
-            $message->subject('Reset Password');
-        });
-        return response()->json(['message'=>'Please Check Your Account , We send you  Message.']);*/
+        
         $validator = $request->validate([
 
             'email'=> 'required|email|exists:users',

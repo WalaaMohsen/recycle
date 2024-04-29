@@ -12,6 +12,8 @@ class Subcategory extends Model
     protected $fillable = [
         'name',
         'status',
+        'image',
+        'subcategory_id',
     ];
     protected $hidden = [
         'remember_token',

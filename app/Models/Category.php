@@ -12,6 +12,7 @@ class Category extends Model
     protected $fillable = [
         'name',
         'status',
+        'image',
     ];
     protected $hidden = [
         'remember_token',

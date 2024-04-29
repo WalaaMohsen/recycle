@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\admin\category;
 use App\Http\Controllers\Api\GetUserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,13 @@ Route::post('register',[RegisterController::class,'register']);
 Route::post('login',[LoginController::class,'login']);
 Route::post('forget_password' ,[NewPasswordController::class,'forget_password']);
 Route::post('reset_password' ,[NewPasswordController::class,'reset_password'])->name('reset_password');
+Route::post('add_category',[category::class,'add_category']);
+Route::post('add_subcategory',[category::class,'add_subcategory']);
+Route::get('get_category',[category::class,'get_category']);
+Route::get('get_subcategory',[category::class,'get_subcategory']);
+
+
+
 
 
 

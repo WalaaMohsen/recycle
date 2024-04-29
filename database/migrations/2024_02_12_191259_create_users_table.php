@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->unsignedBigInteger('password');
+            $table->string('password');
             $table->char('phone',11);
             $table->enum('status',[0,1])->default(0);
             $table->string('image');
