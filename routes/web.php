@@ -16,15 +16,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/index',[Controller::class,'index'])->name('index');
-Route::get('/getregister',[RegisterController::class,'create'])->name('getregister');
-Route::post('/register',[RegisterController::class,'store'])->name('store');
-Route::get('/getlogin',[LoginController::class,'getlogin'])->name('getlogin');
-Route::post('/login',[LoginController::class,'login'])->name('login');
-Route::get('/forget',[ForgetPasswordController::class,'forget'])->name('forget');
-Route::post('/forget_password',[ForgetPasswordController::class,'forget_password'])->name('forget_password');
-Route::get('/reset/{token}',[ForgetPasswordController::class,'reset'])->name('reset');
-Route::post('/reset',[ForgetPasswordController::class,'post_reset'])->name('post_reset');
 
 
 

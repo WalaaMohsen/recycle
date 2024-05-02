@@ -18,9 +18,11 @@ return new class extends Migration
             $table->string('password');
             $table->char('phone',11);
             $table->enum('status',[0,1])->default(0);
-            $table->string('image');
-            $table->double('lat');
-            $table->double('long');
+            $table->string('image')->nullable();
+            $table->string('code' , 5)->nullable();
+            $table->timestamp('code_expired_at')->nullable();
+            $table->double('lat')->nullable();
+            $table->double('long')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
