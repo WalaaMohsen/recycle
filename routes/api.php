@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\EmailverificationController;
 use App\Http\Controllers\api\LoginController;
+use App\Http\Controllers\api\recycle\sendRequestController;
 use App\Http\Controllers\api\recycle\showresult;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::prefix('users')->group(function(){
    Route::post('/sendcode' ,[EmailverificationController::class , 'sendcode']); 
    Route::post('/checkcode' ,[EmailverificationController::class , 'checkcode']); 
    Route::get('/showresult' ,[showresult::class , 'showresult']); 
+   Route::post('/sendrequest' ,[sendRequestController::class , 'sendrequest']); 
 });
 
  

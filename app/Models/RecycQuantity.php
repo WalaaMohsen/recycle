@@ -11,6 +11,8 @@ class RecycQuantity extends Model
     protected $table = 'recycquantity';
     protected $fillable = [
         'weight',
+        'user_id',
+        'recycle_id',
     ];
     protected $hidden = [
         'remember_token',
