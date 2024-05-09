@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('recycquantity', function (Blueprint $table) {
             $table->id();
             $table->double('weight');
+            $table->int('points');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('recycle_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

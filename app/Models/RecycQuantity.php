@@ -13,6 +13,7 @@ class RecycQuantity extends Model
         'weight',
         'user_id',
         'recycle_id',
+        'points'
     ];
     protected $hidden = [
         'remember_token',

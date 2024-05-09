@@ -26,11 +26,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  });
 
 Route::prefix('users')->group(function(){
-   Route::post('/register' ,[RegisterController::class , 'register']); 
-   Route::post('/login' ,[LoginController::class , 'login']); 
-   Route::post('/sendcode' ,[EmailverificationController::class , 'sendcode']); 
-   Route::post('/checkcode' ,[EmailverificationController::class , 'checkcode']); 
-   Route::get('/showresult' ,[showresult::class , 'showresult']); 
+   Route::post('/register'    ,[RegisterController::class , 'register']); 
+   Route::post('/login'       ,[LoginController::class , 'login']); 
+   Route::post('/sendcode'    ,[EmailverificationController::class , 'sendcode']); 
+   Route::post('/checkcode'   ,[EmailverificationController::class , 'checkcode']); 
+   Route::get('/showresult'   ,[showresult::class , 'showresult']); 
    Route::post('/sendrequest' ,[sendRequestController::class , 'sendrequest']); 
 });
 

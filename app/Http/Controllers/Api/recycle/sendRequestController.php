@@ -30,24 +30,30 @@ class sendRequestController extends Controller
             $weightofblastic = RecycQuantity::create([
                 'user_id' => $user->id ,
                 'recycle_id' => 1 ,
-                'weight' => $request->weightofblastic 
+                'weight' => $request->weightofblastic ,
+                'points'  => $request->weightofblastic * 10 
             ]);
         }
         if(!$request->weightofiron ==0 ){
             $weightofiron = RecycQuantity::create([
                 'user_id' => $user->id ,
                 'recycle_id' => 2 ,
-                'weight' => $request->weightofiron 
+                'weight' => $request->weightofiron ,
+                'points'  => $request->weightofiron * 100 
+
             ]);
         }
         if(!$request->weightofglass ==0 ){
             $weightofglass = RecycQuantity::create([
                 'user_id' => $user->id ,
                 'recycle_id' => 3 ,
-                'weight' => $request->weightofglass 
+                'weight' => $request->weightofglass ,
+                'points'  => $request->weightofglass * 5 
+
             ]);
         }
 
-        return $this->MessageSuccess('done request');
+        return $this->MessageSuccess('done request'); 
+        
     }
 }

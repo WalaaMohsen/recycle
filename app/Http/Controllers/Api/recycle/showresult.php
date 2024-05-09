@@ -20,13 +20,14 @@ class showresult extends Controller
         $user = User::where('id' , $authuser->id )->first(); 
 
         $showreuslt = RecycQuantity::where('user_id' , $user->id)->get();
+        $points = RecycQuantity::where('user_id' , $user->id)->sum('points');
      
 
         if($showreuslt->isEmpty()){
             return $this->MessageSuccess('not operation yet'); 
         }
 
-        return $this->data(compact('showreuslt')) ;
+        return $this->data(compact('showreuslt' , 'points')) ;
         
     }
 }
