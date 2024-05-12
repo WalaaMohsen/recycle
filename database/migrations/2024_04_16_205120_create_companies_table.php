@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('image')->option();
             $table->string('description');
             $table->double('price');
+            $table->double('lat')->nullable();
+            $table->double('long')->nullable();
             $table->timestamps();
         });
     }

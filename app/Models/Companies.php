@@ -10,9 +10,12 @@ class Companies extends Model
     use HasFactory;
     protected $table = 'companies';
     protected $fillable = [
-        'name',
-        'price',
-        'description',
+            'name',
+            'image',
+            'description',
+            'price',
+            'lat',
+            'long',
         
     ];
     protected $hidden = [

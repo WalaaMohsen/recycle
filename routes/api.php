@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\api\cleanup\companyController;
+use App\Http\Controllers\api\cleanup\reviewController;
+use App\Http\Controllers\api\cleanup\UserLocationController;
 use App\Http\Controllers\api\EmailverificationController;
 use App\Http\Controllers\api\LoginController;
 use App\Http\Controllers\api\recycle\sendRequestController;
@@ -30,8 +33,19 @@ Route::prefix('users')->group(function(){
    Route::post('/login'       ,[LoginController::class , 'login']); 
    Route::post('/sendcode'    ,[EmailverificationController::class , 'sendcode']); 
    Route::post('/checkcode'   ,[EmailverificationController::class , 'checkcode']); 
-   Route::get('/showresult'   ,[showresult::class , 'showresult']); 
-   Route::post('/sendrequest' ,[sendRequestController::class , 'sendrequest']); 
+   Route::prefix('/recycle')->group(function(){
+      Route::get('/showresult'   ,[showresult::class , 'showresult']); 
+      Route::post('/sendrequest' ,[sendRequestController::class , 'sendrequest']); 
+   });
+   Route::prefix('/cleanup')->group(function(){
+      Route::post('/sendreview/{id}' ,[reviewController::class , 'sendreview']); 
+      Route::get('/showreview/{id}' ,[reviewController::class , 'showreview']); 
+      Route::post('/Userlocation' ,[UserLocationController::class , 'Userlocation']); 
+      Route::post('/createcompany' ,[companyController::class , 'createcompany']); 
+      Route::get('/getcompany' ,[companyController::class , 'getcompany']); 
+      Route::get('/getcompanylocation/{id}' ,[companyController::class , 'getcompanylocation']); 
+   });
+
 });
 
  
