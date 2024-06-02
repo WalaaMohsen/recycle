@@ -22,4 +22,8 @@ class Companies extends Model
         'remember_token',
     ];
 
+    public function user() {
+        return $this->belongsTo('User');
+      }
+
 }
