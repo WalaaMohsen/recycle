@@ -21,16 +21,16 @@ class showresult extends Controller
 
         $showreuslt = RecycQuantity::where('user_id' , $user->id)->get();
         $points = RecycQuantity::where('user_id' , $user->id)->sum('points');
-        $points_of_blastic = RecycQuantity::where('user_id' , $user->id)->where('recycle_id' , 1)->sum('points');
-        $points_of_iron = RecycQuantity::where('user_id' , $user->id)->where('recycle_id' , 2)->sum('points');
-        $points_of_glasses = RecycQuantity::where('user_id' , $user->id)->where('recycle_id' , 3)->sum('points');
+        $pointsofblastic = RecycQuantity::where('user_id' , $user->id)->where('recycle_id' , 1)->sum('points');
+        $pointsofiron = RecycQuantity::where('user_id' , $user->id)->where('recycle_id' , 2)->sum('points');
+        $pointsofglasses = RecycQuantity::where('user_id' , $user->id)->where('recycle_id' , 3)->sum('points');
      
 
         if($showreuslt->isEmpty()){
             return $this->MessageSuccess('not operation yet'); 
         }
 
-        return $this->data(compact('showreuslt' , 'points' , 'points_of_blastic' , 'points_of_iron' , 'points_of_glasses')) ;
+        return $this->data(compact('showreuslt' , 'points' , 'pointsofblastic' , 'pointsofiron' , 'pointsofglasses')) ;
         
     }
 }
