@@ -34,7 +34,8 @@ Route::prefix('users')->group(function(){
    Route::post('/sendcode'    ,[EmailverificationController::class , 'sendcode']); 
    Route::post('/checkcode'   ,[EmailverificationController::class , 'checkcode']); 
    Route::prefix('/recycle')->group(function(){
-      Route::get('/showresult'   ,[showresult::class , 'showresult']); 
+      Route::get('/showtotalresult'   ,[showresult::class , 'showtotalresult']); 
+      Route::get('/showresultforuser'   ,[showresult::class , 'showresultforuser']); 
       Route::post('/sendrequest' ,[sendRequestController::class , 'sendrequest']); 
    });
    Route::prefix('/cleanup')->group(function(){
