@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\api\cleanup;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CompanyRequest;
-use App\Http\traits\ApiTraits;
 use App\Models\Companies;
 use Illuminate\Http\Request;
+use App\Http\traits\ApiTraits;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CompanyRequest;
+use App\Http\Resources\getallcompanyresource;
 
 class companyController extends Controller
 {
@@ -28,7 +29,7 @@ class companyController extends Controller
 
     public function getcompany(){
         $compaines = Companies::all();
-        return $this->data(compact('compaines'));
+        return getallcompanyresource::collection($compaines);
 
     }
     public function getcompanylocation($id){

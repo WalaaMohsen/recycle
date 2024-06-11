@@ -22,6 +22,11 @@ class Companies extends Model
         'remember_token',
     ];
 
+    public function CompanyReview(){
+        return $this->belongsTo(CompanyReview::class);
+
+    }
+
     public function user() {
         return $this->belongsTo('User');
       }

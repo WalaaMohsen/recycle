@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Recycle;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RecycQuantity extends Model
 {
@@ -15,6 +17,14 @@ class RecycQuantity extends Model
         'recycle_id',
         'points'
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+
+    }
+    public function recycle(){
+        return $this->belongsTo(Recycle::class);
+
+    }
     protected $hidden = [
         'remember_token',
     ];

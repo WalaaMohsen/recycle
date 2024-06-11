@@ -6,6 +6,7 @@ use App\Http\traits\ApiTraits;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\showuserResultResourse;
 use App\Models\RecycQuantity;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,10 +41,11 @@ class showresult extends Controller
     
 
         $showreuslt = RecycQuantity::where('user_id' , $user->id)->get();
+        // dd($showreuslt->user->name); 
         if($showreuslt->isEmpty()){
                 return $this->MessageSuccess('not operation yet'); 
             }
-            return $this->data(compact('showreuslt')) ;
+            return showuserResultResourse::collection($showreuslt) ;
     }
 
 }

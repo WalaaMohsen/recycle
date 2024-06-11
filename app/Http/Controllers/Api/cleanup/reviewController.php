@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\api\cleanup;
 
 use App\Models\User;
+use App\Models\Companies;
 use Illuminate\Http\Request;
+use App\Models\CompanyReview;
 use App\Http\traits\ApiTraits;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewRequest;
-use App\Models\Companies;
-use App\Models\CompanyReview;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\showusereveiwResourse;
 
 class reviewController extends Controller
 {
@@ -48,7 +49,7 @@ class reviewController extends Controller
 
         $company_showReviews = CompanyReview::where('company_id' , $company->id)->get();
 
-        return $this->data(compact('company_showReviews','user','company'));
+        return showusereveiwResourse::collection($company_showReviews) ;
 
 
     }

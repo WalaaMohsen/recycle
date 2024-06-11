@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Companies;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CompanyReview extends Model
 {
@@ -16,5 +17,13 @@ class CompanyReview extends Model
         'company_id'
         
     ];
+    public function user(){
+        return $this->belongsTo(User::class);
+
+    }
+    public function company(){
+        return $this->belongsTo(Companies::class);
+
+    }
 
 }

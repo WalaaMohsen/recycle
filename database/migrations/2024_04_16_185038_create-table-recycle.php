@@ -22,10 +22,7 @@ return new class extends Migration
 
         
     }
-    public function user(){
-        return $this->belongsTo(User::class, 'foreign_key');
-
-    }
+   
 
     /**
      * Reverse the migrations.

@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\api\cleanup\companyController;
-use App\Http\Controllers\api\cleanup\reviewController;
-use App\Http\Controllers\api\cleanup\UserLocationController;
-use App\Http\Controllers\api\EmailverificationController;
-use App\Http\Controllers\api\LoginController;
-use App\Http\Controllers\api\recycle\sendRequestController;
-use App\Http\Controllers\api\recycle\showresult;
+use App\Http\Controllers\Api\cleanup\companyController;
+use App\Http\Controllers\Api\cleanup\reviewController;
+use App\Http\Controllers\Api\cleanup\UserLocationController;
+use App\Http\Controllers\Api\EmailverificationController;
+use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\recycle\sendRequestController;
+use App\Http\Controllers\Api\recycle\showresult;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\RegisterController;
