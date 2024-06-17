@@ -14,16 +14,10 @@ class LoginController extends Controller
 
     public function login(loginrequest $request) {
         $user = User::where('email' , $request->email)->first();
-        if(!is_null($user->email_verified_at) && $user->status =='1'){
             $user->token = $user->createToken($user->name)->plainTextToken;
 
             return $this->data(compact('user') , 'successful opearation') ;
-        }
-        else{
-            $user->token = $user->createToken($user->name)->plainTextToken;
-
-            return $this->data(compact('user') , 'user => notverified or blocked') ;
-        }
+        
         
         
     }
