@@ -52,7 +52,7 @@ Route::prefix('users')->group(function(){
    });
 
    Route::get('get_user',[GetUserController::class,'get_user']);
-=   Route::post('forget_password' ,[NewPasswordController::class,'forget_password']);
+   Route::post('forget_password' ,[NewPasswordController::class,'forget_password']);
    Route::post('reset_password' ,[NewPasswordController::class,'reset_password'])->name('reset_password');
    Route::post('add_category',[category::class,'add_category']);
    Route::post('add_subcategory',[category::class,'add_subcategory']);
