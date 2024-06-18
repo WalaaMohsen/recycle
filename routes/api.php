@@ -35,6 +35,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('users')->group(function(){
    Route::post('/register'    ,[RegisterController::class , 'register']); 
    Route::post('/login'       ,[LoginController::class , 'login']); 
+   Route::post('forget_password' ,[NewPasswordController::class,'forget_password']);
+   Route::post('reset_password' ,[NewPasswordController::class,'reset_password'])->name('reset_password');
    Route::get('/logout'       ,[LoginController::class , 'logout_all_devices']); 
    Route::post('/sendcode'    ,[EmailverificationController::class , 'sendcode']); 
    Route::post('/checkcode'   ,[EmailverificationController::class , 'checkcode']); 
@@ -53,8 +55,7 @@ Route::prefix('users')->group(function(){
    });
 
    Route::get('get_user',[GetUserController::class,'get_user']);
-   Route::post('forget_password' ,[NewPasswordController::class,'forget_password']);
-   Route::post('reset_password' ,[NewPasswordController::class,'reset_password'])->name('reset_password');
+   
    Route::post('add_category',[category::class,'add_category']);
    Route::post('add_subcategory',[category::class,'add_subcategory']);
    Route::get('get_category',[category::class,'get_category']);

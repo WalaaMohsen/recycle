@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Mail\ForgetPasswordMail;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -29,16 +30,9 @@ class NewPasswordController extends Controller
             return response()->json(['message'=>'Invalid , This Email not founded.']);
 
         }
-        $token = Str::random(64);
-        DB::table('password_reset_tokens')->insert([
-                  'email' => $request->email,
-                  'token' => $token,
-                  'created_at' => Carbon::now(),
-        ]);
-        Mail::send('emails.forget',['token' =>$token],function($message) use ($request){
-            $message->to($request->email);
-            $message->subject('Reset Password');
-        });
+        $user = User::where('email' , $request->email)->first();
+
+        $token = $user->createToken($user->name)->plainTextToken;
 
         return response()->json(['message'=>'Please Check Your Account , We send you  Message.']);
 
@@ -53,35 +47,26 @@ class NewPasswordController extends Controller
 
         $request->validate([
 
-            'email'=> 'required|email|exists:users',
             'password' =>'required|min:8',
             'cpassword' => 'required',
                        
         ]);
-    if($request->password == $request->cpassword){
-        $updatePassword = DB::table('password_reset_tokens')->where([
-            'email' => $request->email,
-            'token' => $request->token,
-        ])->first();
+            $token = $request->header("Authorization") ;
+    
+            $authuser = Auth::guard('sanctum')->user();
+    
+            $user = User::where('id' , $authuser->id )->first(); 
 
-        if(!$updatePassword){
-
-            return response()->json(['message'=>'Invalid, Not Founded This Email.']);
-
-        }
-        User::where('email' , $request->email)->update(['password'=>Hash::make($request->password)]);
-        DB::table('password_reset_tokens')->where(['email' => $request->email])->delete();
+        
+        User::where('id' , $user->id)->update(['password'=>Hash::make($request->password)]);
         
         return response()->json(['message'=>'Password Reseted successfully.']);
 
     }
-    else{
-        return response()->json(['message'=>'Password and Confirm are not match.']);
-
-    }
+  
 
 
 
         
     }
-}
+
