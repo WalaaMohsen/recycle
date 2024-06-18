@@ -8,6 +8,7 @@ use App\Http\traits\ApiTraits;
 use App\Http\Requests\loginrequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -15,6 +16,10 @@ class LoginController extends Controller
 
     public function login(loginrequest $request) {
         $user = User::where('email' , $request->email)->first();
+
+             if(! Hash::check($request->password, $user->password)){
+            return $this->MessageError(['login' => "incorrect email or password"] , "tryagain" , 401);
+        }
             $user->token = $user->createToken($user->name)->plainTextToken;
 
             return $this->data(compact('user') , 'successful opearation') ;

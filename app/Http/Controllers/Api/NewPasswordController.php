@@ -34,7 +34,7 @@ class NewPasswordController extends Controller
 
         $user->token = $user->createToken($user->name)->plainTextToken;
 
-        return response()->json([compact()]);
+        return response()->json([compact('user')]);
 
 
          
@@ -47,8 +47,7 @@ class NewPasswordController extends Controller
 
         $request->validate([
 
-            'password' =>'required|min:8',
-            'cpassword' => 'required',
+            'password' =>'required|min:8|confirmed',
                        
         ]);
             $token = $request->header("Authorization") ;
