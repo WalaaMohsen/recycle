@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('users')->group(function(){
    Route::post('/register'    ,[RegisterController::class , 'register']); 
    Route::post('/login'       ,[LoginController::class , 'login']); 
+   Route::post('/logout'       ,[LoginController::class , 'logout_all_devices']); 
    Route::post('/sendcode'    ,[EmailverificationController::class , 'sendcode']); 
    Route::post('/checkcode'   ,[EmailverificationController::class , 'checkcode']); 
    Route::prefix('/recycle')->group(function(){
