@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Subcategory extends Model
 {
@@ -15,6 +16,10 @@ class Subcategory extends Model
         'image',
         'subcategory_id',
     ];
+    public function category(){
+        return $this->belongsTo(Category::class , 'subcategory_id' , 'id');
+
+    }
     protected $hidden = [
         'remember_token',
     ];

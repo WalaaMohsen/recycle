@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Antikae;
 use App\Models\Subcategory;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\antikaResourse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\showuserResultResourse;
 
 
 class AntikaController extends Controller
@@ -16,28 +18,34 @@ class AntikaController extends Controller
 {
 
 
+    public function show_all_products(Request $request){
+        $show_all_products = Subcategory::get();
+        return antikaResourse::collection($show_all_products) ;
+    
+         
+}
     public function show_vaza(Request $request){
         $vaza = Subcategory::where('subcategory_id' , 4)->get();
-        return response()->json(['vaza'=>$vaza],200);
+        return antikaResourse::collection($vaza) ;
     
          
 }
    public function show_camera(Request $request){
       $camera = Subcategory::where('subcategory_id' , 1)->get();
-      return response()->json(['camera'=>$camera],200);  
-   }
+      return antikaResourse::collection($camera) ;
+    }
    public function show_coin(Request $request){
     $coin = Subcategory::where('subcategory_id' , 2)->get();
-    return response()->json(['coin'=>$coin],200);  
- }
+    return antikaResourse::collection($coin) ;
+}
  public function show_jewelry(Request $request){
     $jewelry = Subcategory::where('subcategory_id' , 3)->get();
-    return response()->json(['jewelry'=>$jewelry],200);  
- }
+    return antikaResourse::collection($jewelry) ;
+}
  public function show_typewriter(Request $request){
     $typewriter = Subcategory::where('subcategory_id' , 5)->get();
-    return response()->json(['typewriter'=>$typewriter],200);  
- }
+    return antikaResourse::collection($typewriter) ;
+}
     public function new_antika(Request $request)
     {
 

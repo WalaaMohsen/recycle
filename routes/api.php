@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
  });
 
 Route::prefix('users')->group(function(){
+   Route::get('get_user',[GetUserController::class,'get_user']);
    Route::post('/register'    ,[RegisterController::class , 'register']); 
    Route::post('/login'       ,[LoginController::class , 'login']); 
    Route::post('forget_password' ,[NewPasswordController::class,'forget_password']);
@@ -54,14 +55,14 @@ Route::prefix('users')->group(function(){
       Route::get('/getcompanylocation/{id}' ,[companyController::class , 'getcompanylocation']); 
    });
 
-   Route::get('get_user',[GetUserController::class,'get_user']);
+});
    
    Route::post('add_category',[category::class,'add_category']);
    Route::post('add_subcategory',[category::class,'add_subcategory']);
    Route::get('get_category',[category::class,'get_category']);
    Route::get('get_subcategory',[category::class,'get_subcategory']);
    Route::post('/add_antika', [AntikaController::class, 'new_antika']);
-   Route::get('/show_antika', [AntikaController::class, 'show_antika']);
+   Route::get('/show_antika', [AntikaController::class, 'show_all_products']);
    Route::get('/show_vaza', [AntikaController::class, 'show_vaza']);
    Route::get('/show_camera', [AntikaController::class, 'show_camera']); 
    Route::get('/show_coin', [AntikaController::class, 'show_coin']);
@@ -69,7 +70,6 @@ Route::prefix('users')->group(function(){
    Route::get('/show_typewriter', [AntikaController::class, 'show_typewriter']);
 
 
-});
 
  
 
