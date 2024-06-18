@@ -32,9 +32,9 @@ class NewPasswordController extends Controller
         }
         $user = User::where('email' , $request->email)->first();
 
-        $token = $user->createToken($user->name)->plainTextToken;
+        $user->token = $user->createToken($user->name)->plainTextToken;
 
-        return response()->json(['message'=>'Please Check Your Account , We send you  Message.']);
+        return response()->json([compact()]);
 
 
          
