@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\traits\ApiTraits;
 use App\Http\Requests\loginrequest;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -20,6 +21,11 @@ class LoginController extends Controller
         
         
         
+    }
+    public function logout_all_devices(){
+        $authuser =  Auth::guard('sanctum')->user();
+        $authuser->tokens()->delete();
+        return $this->MessageSuccess('sucsses');
     }
 }
 
