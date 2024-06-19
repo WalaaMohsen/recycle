@@ -22,7 +22,6 @@ class showusereveiwResourse extends JsonResource
                 "user_name"=>  $this->user->name,
                 "company_name"=> $this->company->name,
                 "created_at"=>  $this->created_at,
-                'rate' =>  CompanyReview::where('company_id' , $this->company->id)->average('value')
 
         ];
     }

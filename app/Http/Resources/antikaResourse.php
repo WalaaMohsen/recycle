@@ -20,7 +20,9 @@ class antikaResourse extends JsonResource
             "image"=> $this->image,
             "Desc"=> $this->remember_token,
             "category_name"=>$this->category->name,
+            "status"=>$this->category->status,
             "created_at"=> $this->created_at,
+            "updated_at"=> $this->updated_at,
 
     ];
     }

@@ -21,6 +21,8 @@ class UserResourse extends JsonResource
             "image"=> $this->image,
             "email"=> $this->email,
             "phone"=>$this->phone,
+            "lat"=>$this->lat,
+            "long"=>$this->long,
             "token"=> $this->token,
             "points"=>RecycQuantity::where('user_id' , $this->id)->sum('points')
 

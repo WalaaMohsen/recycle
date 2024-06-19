@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('users')->group(function(){
    Route::get('get_user',[GetUserController::class,'get_user']);
+   Route::post('edit_profile',[GetUserController::class,'edit_user_info']);
    Route::post('/register'    ,[RegisterController::class , 'register']); 
    Route::post('/login'       ,[LoginController::class , 'login']); 
    Route::post('forget_password' ,[NewPasswordController::class,'forget_password']);
@@ -75,7 +76,30 @@ Route::prefix('users')->group(function(){
  
 
 
-
+   Route::prefix('/dashbord')->group(function(){
+      Route::prefix('/antika')->group(function(){
+         Route::get('/create' ,[AntikaController::class , 'create_antika']); 
+         Route::post('/store' ,[AntikaController::class , 'store_antika']); 
+         Route::get('/edit/{id}' ,[AntikaController::class , 'edit_antika']); 
+         Route::post('/update/{id}' ,[AntikaController::class , 'update_antika']); 
+         Route::delete('/delete/{id}' ,[AntikaController::class , 'delete_antika']); 
+         
+      });
+      Route::prefix('/company')->group(function(){
+         Route::get('/create' ,[companyController::class , 'create_company']); 
+         Route::post('/store' ,[companyController::class , 'store_company']); 
+         Route::get('/edit/{id}' ,[companyController::class , 'edit_company']); 
+         Route::post('/update/{id}' ,[companyController::class , 'update_company']); 
+         Route::delete('/delete/{id}' ,[companyController::class , 'delete_company']); 
+         
+      });
+      Route::prefix('/users')->group(function(){
+         Route::get('/edit/{id}' ,[GetUserController::class , 'edit_user']); 
+         Route::post('/update/{id}' ,[GetUserController::class , 'update_user']); 
+         Route::delete('/delete/{id}' ,[GetUserController::class , 'delete_user']); 
+         
+      });
+   });
 
 
 

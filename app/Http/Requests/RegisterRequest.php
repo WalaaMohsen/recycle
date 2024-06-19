@@ -25,7 +25,8 @@ class RegisterRequest extends FormRequest
             'name' => ['required' , 'max:100'],
             'phone' => ['required' ,  'unique:users,phone' , 'min:11' , 'max:11'],
             'email' => ['required' , 'email' ,'unique:users,email' ],
-            'password'=> ['required' , 'min:8' , 'confirmed']
+            'password'=> ['required' , 'min:8' , 'confirmed'],
+            'image' => ['nullable']
         ];
     }
 }

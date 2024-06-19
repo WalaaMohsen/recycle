@@ -23,7 +23,7 @@ class LoginController extends Controller
         }
             $user->token = $user->createToken($user->name)->plainTextToken;
 
-            return new UserResourse($user) ;
+            return [new UserResourse($user) , response()->json(['message' => 'opearation successful']) ];
         
         
         

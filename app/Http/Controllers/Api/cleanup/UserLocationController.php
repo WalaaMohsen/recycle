@@ -3,11 +3,16 @@
 namespace App\Http\Controllers\api\cleanup;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\traits\ApiTraits;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LocationRequest;
+use App\Http\Resources\UserResourse;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LocationRequest;
+use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class UserLocationController extends Controller
 {
@@ -28,6 +33,10 @@ class UserLocationController extends Controller
 
         return $this->data(compact('user')) ;
     }
+
+    
+       
+     
 
     
 }
