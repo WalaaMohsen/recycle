@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\traits\ApiTraits;
 use App\Http\Requests\loginrequest;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResourse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,7 +23,7 @@ class LoginController extends Controller
         }
             $user->token = $user->createToken($user->name)->plainTextToken;
 
-            return $this->data(compact('user') , 'successful opearation') ;
+            return new UserResourse($user) ;
         
         
         

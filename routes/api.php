@@ -68,6 +68,7 @@ Route::prefix('users')->group(function(){
    Route::get('/show_coin', [AntikaController::class, 'show_coin']);
    Route::get('/show_jewelry', [AntikaController::class, 'show_jewelry']);
    Route::get('/show_typewriter', [AntikaController::class, 'show_typewriter']);
+   Route::post('/updateDesc/{id}', [AntikaController::class, 'updateDesc']);
 
 
 

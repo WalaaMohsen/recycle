@@ -15,12 +15,14 @@ class Subcategory extends Model
         'status',
         'image',
         'subcategory_id',
+        'remember_token'
     ];
     public function category(){
         return $this->belongsTo(Category::class , 'subcategory_id' , 'id');
 
     }
-    protected $hidden = [
-        'remember_token',
-    ];
+//     protected $hidden = [
+//         'remember_token',
+//     ];
+
 }

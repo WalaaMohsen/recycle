@@ -3,9 +3,10 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
+use App\Models\RecycQuantity;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class antikaResourse extends JsonResource
+class UserResourse extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,9 +19,11 @@ class antikaResourse extends JsonResource
             "id"=> $this->id,
             "name"=> $this->name,
             "image"=> $this->image,
-            "Desc"=> $this->remember_token,
-            "category_name"=>$this->category->name,
-            "created_at"=> $this->created_at,
+            "email"=> $this->email,
+            "phone"=>$this->phone,
+            "token"=> $this->token,
+            "points"=>RecycQuantity::where('user_id' , $this->id)->sum('points')
+
 
     ];
     }

@@ -46,6 +46,17 @@ class AntikaController extends Controller
     $typewriter = Subcategory::where('subcategory_id' , 5)->get();
     return antikaResourse::collection($typewriter) ;
 }
+ public function updateDesc($id , Request $request){
+    Subcategory::where('id' , $id)->update([
+        'remember_token' => $request->remember_token 
+    ]);
+
+    $x = Subcategory::where('subcategory_id' , $id)->first();
+
+
+    return response()->json(compact('x'));
+
+}
     public function new_antika(Request $request)
     {
 
