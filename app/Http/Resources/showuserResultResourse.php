@@ -18,8 +18,13 @@ class showuserResultResourse extends JsonResource
             'id' => $this->id,
             "weight" => $this->weight,
             "points"=> $this->points,
-            "user_id"=> $this->user->name,
+            "user_id"=> $this->user->id,
+            "user_name"=> $this->user->name,
+            "user_email"=> $this->user->email,
+            "user_phone"=> $this->user->phone,
+            "recycle_id"=> $this->recycle->id,
             "recycle_type"=> $this->recycle->type,
+            'remember_token'=> $this->remember_token,
             "created_at"=> $this->created_at,
 
 

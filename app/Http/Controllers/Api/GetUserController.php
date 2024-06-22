@@ -23,8 +23,9 @@ class GetUserController extends Controller
     public function get_user(Request $request)  {
 
         $user = User::get();
+        $totalusers = User::count('id');
 
-        return response()->json(['users'=>$user],200);
+        return response()->json(['totalusers'=>$totalusers  , 'users'=>$user ],200);
 
         
 

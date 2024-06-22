@@ -32,6 +32,9 @@ class companyController extends Controller
 
     public function getcompany(){
         $compaines = Companies::all();
+        $totalCompanies = Companies::count('id');
+        return ['totalCompanies'=>$totalCompanies , 'data' => getallcompanyresource::collection($compaines)];
+
         return getallcompanyresource::collection($compaines);
 
     }

@@ -22,7 +22,8 @@ use ApiTraits ;
 
     public function show_all_products(Request $request){
         $show_all_products = Subcategory::get();
-        return antikaResourse::collection($show_all_products) ;
+        $totalproduct = Subcategory::count('id');
+        return ['totalproduct'=>$totalproduct , 'data' => antikaResourse::collection($show_all_products)] ;
     
          
 }
@@ -59,89 +60,89 @@ use ApiTraits ;
     return response()->json(compact('x'));
 
 }
- public function create_antika(Request $request){
-    $Categories = Category::select('id' , 'name')->get();
-    return  $this->data(compact('Categories'), 'done') ;
+
+public function create_antika(Request $request){
+   $Categories = Category::select('id' , 'name')->get();
+   return  $this->data(compact('Categories'), 'done') ;
 
 }
 
 public function store_antika(Request $request)
 {
-    
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|string|max:255',
-        'subcategory_id' => 'required|exists:categories,id',
-        'image' => 'required',
-        'description' => 'required|string|max:100',
-        
-    ]);
-    
-    if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-        
-        $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
-        
-        Subcategory::create([
-            'name' => $request->name,
-            'subcategory_id' => $request->subcategory_id,
-            'image' => $imageName,
-            'remember_token' => $request->description ,
-          
-        ]);
-        
-        Storage::disk('public')->put($imageName , file_get_contents($request->image));
-        
-        return response()->json(['message' => 'New Antika Inserted successfully'], 201);
-    }
-    public function edit_antika($id){
-       $antika = Subcategory::find($id);
-       $Categories = Category::select('id' , 'name')->get();
-       return  $this->data([new antikaResourse($antika) , compact('Categories')], 'done') ;
-    
-    }
-    public function update_antika($id ,request $request)  {
+   
+   $validator = Validator::make($request->all(), [
+       'name' => 'required|string|max:255',
+       'subcategory_id' => 'required|exists:categories,id',
+       'image' => 'required',
+       'description' => 'required|string|max:100',
+       
+   ]);
+   
+   if ($validator->fails()) {
+           return response()->json($validator->errors(), 400);
+       }
+       
+       $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
+       
+       Subcategory::create([
+           'name' => $request->name,
+           'subcategory_id' => $request->subcategory_id,
+           'image' => $imageName,
+           'remember_token' => $request->description ,
+         
+       ]);
+       
+       Storage::disk('public')->put($imageName , file_get_contents($request->image));
+       
+       return response()->json(['message' => 'New Antika Inserted successfully'], 201);
+   }
+   public function edit_antika($id){
+      $antika = Subcategory::find($id);
+      $Categories = Category::select('id' , 'name')->get();
+      return  $this->data([new antikaResourse($antika) , compact('Categories')], 'done') ;
+   
+   }
+   public function update_antika($id ,request $request)  {
 
 
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'subcategory_id' => 'required|exists:categories,id',
-            'image' => 'nullable',
-            'remember_token' => 'required|string|max:100',
+       $validator = Validator::make($request->all(), [
+           'name' => 'required|string|max:255',
+           'subcategory_id' => 'required|exists:categories,id',
+           'image' => 'nullable',
+           'remember_token' => 'required|string|max:100',
 
-            
-        ]);
+           
+       ]);
 
-      
-        
-        if ($validator->fails()) {
-                return response()->json($validator->errors(), 400);
-            }
+     
+       
+       if ($validator->fails()) {
+               return response()->json($validator->errors(), 400);
+           }
 
 
-        $antika= Subcategory::find($id);
-        if($antika){
-            $data = $request->except('_token','_method' ,'page' , 'image');
-                
-                if($request->has('image')){
-                    $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
+       $antika= Subcategory::find($id);
+       if($antika){
+           $data = $request->except('_token','_method' ,'page' , 'image');
+               
+               if($request->has('image')){
+                   $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
 
-                    Storage::disk('public')->put($imageName , file_get_contents($request->image));
-                    
-                    $data['image']= $imageName;
-                }
-                Subcategory::where('id' , $id)->update($data);
-                return  $this->MessageSuccess("success" );
+                   Storage::disk('public')->put($imageName , file_get_contents($request->image));
+                   
+                   $data['image']= $imageName;
+               }
+               Subcategory::where('id' , $id)->update($data);
+               return  $this->MessageSuccess("success" );
 
-                }
-                
-        
+               }
+               
+       
 
-        else{
-            return  $this->MessageSuccess("not found " );
+       else{
+           return  $this->MessageSuccess("not found " );
 
-        }
-
+       }
         
         
         

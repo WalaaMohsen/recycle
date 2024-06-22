@@ -15,7 +15,9 @@ class RecycQuantity extends Model
         'weight',
         'user_id',
         'recycle_id',
-        'points'
+        'points',
+        'remember_token',
+
     ];
     public function user(){
         return $this->belongsTo(User::class);
@@ -25,8 +27,6 @@ class RecycQuantity extends Model
         return $this->belongsTo(Recycle::class);
 
     }
-    protected $hidden = [
-        'remember_token',
-    ];
+
 
 }

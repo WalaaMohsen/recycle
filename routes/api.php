@@ -44,6 +44,8 @@ Route::prefix('users')->group(function(){
    Route::post('/checkcode'   ,[EmailverificationController::class , 'checkcode']); 
    Route::prefix('/recycle')->group(function(){
       Route::get('/showtotalresult'   ,[showresult::class , 'showtotalresult']); 
+      Route::get('/showallopeartion'   ,[showresult::class , 'showallopeartion']); 
+      Route::get('/Confirm_the_operation/{id}'   ,[showresult::class , 'Confirm_the_operation']); 
       Route::get('/showresultforuser'   ,[showresult::class , 'showresultforuser']); 
       Route::post('/sendrequest' ,[sendRequestController::class , 'sendrequest']); 
    });

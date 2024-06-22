@@ -19,4 +19,7 @@ class Antikae extends Model
     protected $hidden = [
         'remember_token',
     ];
+
+    
+
 }
