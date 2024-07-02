@@ -51,6 +51,7 @@ class sendRequestController extends Controller
                 'points'  => $request->weightofglass * 5 
 
             ]); 
+
         }
 
         return $this->MessageSuccess('done request'); 

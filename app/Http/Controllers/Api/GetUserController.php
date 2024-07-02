@@ -84,7 +84,6 @@ class GetUserController extends Controller
             'phone' => ['required' ,  'unique:users,phone,'.$id , 'min:11' , 'max:11'],
             'email' => ['required' , 'email' ,'unique:users,email,'.$id ],
             'password'=> ['required' , 'min:8' , 'confirmed'],
-            'image' => ['nullable']
             
         ]);
 
@@ -96,14 +95,9 @@ class GetUserController extends Controller
   
          $User= User::find($id);
          if($User){
-             $data = $request->except('image' , 'password' , 'password_confirmation');
+             $data = $request->except('password' , 'password_confirmation');
                  
-                 if($request->has('image' )){
-                     $imageName = Str::random(32).".".$request->image->getClientOriginalExtension();
-                     Storage::disk('public')->put($imageName , file_get_contents($request->image));
-                     
-                     $data['image']= $imageName;
-                 }
+                
                  $data['password'] = Hash::make($request->password);
 
                  User::where('id' , $id)->update($data);
